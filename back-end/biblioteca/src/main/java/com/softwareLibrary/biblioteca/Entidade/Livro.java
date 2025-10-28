@@ -2,6 +2,8 @@ package com.softwareLibrary.biblioteca.Entidade;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,10 +27,14 @@ public class Livro {
     @Column(name = "lingua", length = 20)
     private String lingua;
 
-    @ElementCollection
-    @CollectionTable(name = "livro_autores", joinColumns = @JoinColumn(name = "livro_id"))
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+            name = "livro_autores",
+            joinColumns = @JoinColumn(name = "livro_id"),
+            foreignKey = @ForeignKey(name = "fk_livro_autores")
+    )
     @Column(name = "autor")
-    private List<String> autores;
+    private List<String> autores = new ArrayList<>();
 
     @Column(name = "titulo", length = 500)
     private String titulo;
@@ -51,10 +57,14 @@ public class Livro {
     @Column(name = "titulo_serie", length = 200)
     private String tituloSerie;
 
-    @ElementCollection
-    @CollectionTable(name = "livro_assuntos", joinColumns = @JoinColumn(name = "livro_id"))
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+            name = "livro_assuntos",
+            joinColumns = @JoinColumn(name = "livro_id"),
+            foreignKey = @ForeignKey(name = "fk_livro_assuntos")
+    )
     @Column(name = "assunto")
-    private List<String> assuntos;
+    private List<String> assuntos = new ArrayList<>();
 
     @Column(name = "cutter", length = 50)
     private String cutter;
