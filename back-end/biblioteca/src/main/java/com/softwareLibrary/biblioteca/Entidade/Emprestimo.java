@@ -29,7 +29,7 @@ public class Emprestimo {
     private LocalDate dataDevolucaoReal;
 
     @Column(name = "status", length = 20)
-    private String status; // ATIVO, DEVOLVIDO, ATRASADO
+    private String status; // PENDENTE, DEVOLVIDO, ATRASADO
 
     // Construtores
     public Emprestimo() {
@@ -40,7 +40,7 @@ public class Emprestimo {
         this.isbnLivro = isbnLivro;
         this.dataRetirada = LocalDate.now();
         this.dataDevolucaoPrevista = LocalDate.now().plusDays(14);
-        this.status = "ATIVO";
+        this.status = "PENDENTE";
     }
 
     // Getters e Setters
@@ -106,7 +106,7 @@ public class Emprestimo {
     }
 
     public boolean isAtivo() {
-        return "ATIVO".equals(status);
+        return "PENDENTE".equals(status);
     }
 
     public void devolver() {

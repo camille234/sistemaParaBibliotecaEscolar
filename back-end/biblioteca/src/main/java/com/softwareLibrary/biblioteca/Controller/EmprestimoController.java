@@ -2,6 +2,7 @@ package com.softwareLibrary.biblioteca.Controller;
 
 import com.softwareLibrary.biblioteca.Entidade.Emprestimo;
 import com.softwareLibrary.biblioteca.Service.EmprestimoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,14 +12,11 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/emprestimos")
+@RequestMapping("/emprestimos")
 public class EmprestimoController {
 
-    private final EmprestimoService emprestimoService;
-
-    public EmprestimoController(EmprestimoService emprestimoService) {
-        this.emprestimoService = emprestimoService;
-    }
+    @Autowired
+    EmprestimoService emprestimoService;
 
     @PostMapping("/realizar")
     public ResponseEntity<?> realizarEmprestimo(@RequestBody Map<String, String> request) {

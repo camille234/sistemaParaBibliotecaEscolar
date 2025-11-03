@@ -28,6 +28,14 @@ public class AlunoService {
         return alunoRepository.findById(matricula); // Agora aceita String
     }
 
+    // Verificar se matrícula é válida e retornar aluno
+    public Optional<Aluno> autenticarPorMatricula(String matricula) {
+        if (matricula == null || !matricula.matches("\\d{10}")) {
+            return Optional.empty();
+        }
+        return buscarPorMatricula(matricula);
+    }
+
     public void removerPorMatricula(String matricula) {
         alunoRepository.deleteById(matricula); // Agora aceita String
     }

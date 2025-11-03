@@ -21,15 +21,15 @@ public class Livro {
     @Column(name = "numero_chamada", length = 50)
     private String numeroChamada;
 
-    @Column(name = "numero_registro", unique = true)
-    private Integer numeroRegistro;
+    @Column(name = "exemplares")
+    private Integer exemplares;
 
     @Column(name = "lingua", length = 20)
     private String lingua;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
-            name = "livro_autores",
+            name = "tb_livro_autores",
             joinColumns = @JoinColumn(name = "livro_id"),
             foreignKey = @ForeignKey(name = "fk_livro_autores")
     )
@@ -59,7 +59,7 @@ public class Livro {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
-            name = "livro_assuntos",
+            name = "tb_livro_assuntos",
             joinColumns = @JoinColumn(name = "livro_id"),
             foreignKey = @ForeignKey(name = "fk_livro_assuntos")
     )
@@ -72,15 +72,18 @@ public class Livro {
     @Column(name = "cdd", length = 20)
     private String cdd;
 
+    @Column(name = "disponivel")
+    private Boolean disponivel; // True ou false
+
     // Construtores
     public Livro() {
     }
 
-    public Livro(String isbn, String numeroChamada, Integer numeroRegistro,
+    public Livro(String isbn, String numeroChamada, Integer exemplares,
                  String lingua, List<String> autores, String titulo) {
         this.isbn = isbn;
         this.numeroChamada = numeroChamada;
-        this.numeroRegistro = numeroRegistro;
+        this.exemplares = exemplares;
         this.lingua = lingua;
         this.autores = autores;
         this.titulo = titulo;
@@ -111,12 +114,12 @@ public class Livro {
         this.numeroChamada = numeroChamada;
     }
 
-    public Integer getNumeroRegistro() {
-        return numeroRegistro;
+    public Integer getExemplares() {
+        return exemplares;
     }
 
-    public void setNumeroRegistro(Integer numeroRegistro) {
-        this.numeroRegistro = numeroRegistro;
+    public void setExemplares(Integer exemplares) {
+        this.exemplares = exemplares;
     }
 
     public String getLingua() {

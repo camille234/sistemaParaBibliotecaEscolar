@@ -1,9 +1,12 @@
 package com.softwareLibrary.biblioteca.Service;
 
 import com.softwareLibrary.biblioteca.Entidade.Emprestimo;
+import com.softwareLibrary.biblioteca.Entidade.Livro;
 import com.softwareLibrary.biblioteca.Repository.EmprestimoRepository;
+import com.softwareLibrary.biblioteca.Repository.LivroRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,9 +16,17 @@ import java.util.Optional;
 @Transactional
 public class EmprestimoService {
 
+    @Autowired
     private final EmprestimoRepository emprestimoRepository;
+
+    @Autowired
     private final AlunoService alunoService;
+
+    @Autowired
     private final LivroService livroService;
+
+    @Autowired
+    private LivroRepository livroRepository;
 
     @Autowired
     public EmprestimoService(EmprestimoRepository emprestimoRepository,
@@ -27,6 +38,7 @@ public class EmprestimoService {
     }
 
     public Emprestimo realizarEmprestimo(String matriculaAluno, String isbnLivro) {
+
         // Verificar se aluno existe
         if (!alunoService.existePorMatricula(matriculaAluno)) {
             throw new RuntimeException("Aluno não encontrado com matrícula: " + matriculaAluno);
@@ -38,12 +50,16 @@ public class EmprestimoService {
         }
 
         // Verificar se aluno já tem empréstimo ativo
-        if (emprestimoRepository.existsByMatriculaAlunoAndStatus(matriculaAluno, "ATIVO")) {
-            throw new RuntimeException("Aluno já possui um empréstimo ativo");
+        if (emprestimoRepository.existsByMatriculaAlunoAndStatus(matriculaAluno, "PENDENTE")) {
+            throw new RuntimeException("Aluno já possui um empréstimo pendente");
+        }
+
+        if (emprestimoRepository.existsByMatriculaAlunoAndStatus(matriculaAluno, "ATRASADO")) {
+            throw new RuntimeException("Aluno já possui um empréstimo atrasado");
         }
 
         // Verificar se livro já está emprestado
-        if (emprestimoRepository.findByIsbnLivroAndStatus(isbnLivro, "ATIVO").isPresent()) {
+        if (emprestimoRepository.findByIsbnLivroAndStatus(isbnLivro, "PENDENTE").isPresent()) {
             throw new RuntimeException("Livro já está emprestado");
         }
 
@@ -80,7 +96,7 @@ public class EmprestimoService {
     }
 
     public List<Emprestimo> listarAtivos() {
-        return emprestimoRepository.findByStatus("ATIVO");
+        return emprestimoRepository.findByStatus("ALUGADO");
     }
 
     public List<Emprestimo> listarAtrasados() {
@@ -100,15 +116,9 @@ public class EmprestimoService {
     }
 
     public Optional<Emprestimo> buscarEmprestimoAtivoPorAluno(String matriculaAluno) {
-        List<Emprestimo> ativos = emprestimoRepository.findByMatriculaAlunoAndStatus(matriculaAluno, "ATIVO");
+        List<Emprestimo> ativos = emprestimoRepository.findByMatriculaAlunoAndStatus(matriculaAluno, "INDISPONÍVEL");
         return ativos.isEmpty() ? Optional.empty() : Optional.of(ativos.get(0));
     }
 
-    public void atualizarStatusAtrasados() {
-        List<Emprestimo> atrasados = emprestimoRepository.findEmprestimosAtrasados();
-        for (Emprestimo emprestimo : atrasados) {
-            emprestimo.setStatus("ATRASADO");
-            emprestimoRepository.save(emprestimo);
-        }
-    }
+
 }
