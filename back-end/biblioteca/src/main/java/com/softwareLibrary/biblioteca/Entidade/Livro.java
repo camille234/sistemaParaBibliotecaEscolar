@@ -87,6 +87,15 @@ public class Livro {
         this.lingua = lingua;
         this.autores = autores;
         this.titulo = titulo;
+        this.disponivel = true;
+    }
+
+    public void disponibilizarLivro(){
+        this.disponivel = true;
+    }
+
+    public void indisponibilizarLivro(){
+        this.disponivel = false;
     }
 
     // Getters e Setters

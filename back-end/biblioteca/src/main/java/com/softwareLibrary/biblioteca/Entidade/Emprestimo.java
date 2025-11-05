@@ -1,6 +1,7 @@
 package com.softwareLibrary.biblioteca.Entidade;
 
 
+import com.softwareLibrary.biblioteca.Enums.StatusEmprestimo;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -105,7 +106,7 @@ public class Emprestimo {
         return LocalDate.now().isAfter(dataDevolucaoPrevista) && dataDevolucaoReal == null;
     }
 
-    public boolean isAtivo() {
+    public boolean isPendente() {
         return "PENDENTE".equals(status);
     }
 

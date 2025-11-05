@@ -2,6 +2,7 @@ package com.softwareLibrary.biblioteca.Service;
 
 import com.softwareLibrary.biblioteca.DTO.LivroFiltro;
 import com.softwareLibrary.biblioteca.Entidade.Livro;
+import com.softwareLibrary.biblioteca.Repository.EmprestimoRepository;
 import com.softwareLibrary.biblioteca.Repository.LivroRepository;
 import com.softwareLibrary.biblioteca.Specification.LivroSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,9 @@ public class LivroService {
 
     @Autowired
     private LivroRepository livroRepository;
+
+    @Autowired
+    private EmprestimoRepository emprestimoRepository;
 
     public Livro salvar(Livro livro) {
         try {
@@ -46,6 +51,27 @@ public class LivroService {
         // Remove formatação do ISBN para busca
         //String isbnLimpo = isbn.replace("-", "");
         return livroRepository.findByIsbnContaining(isbn);
+    }
+
+    public boolean isLivroDisponivel(String isbn) {
+        Optional<Livro> livroOpt = buscarPorIsbn(isbn);
+        if (livroOpt.isEmpty()) {
+            return false;
+        }
+
+        Livro livro = livroOpt.get();
+
+        // Se não há exemplares, não está disponível
+        if (livro.getExemplares() == null || livro.getExemplares() <= 0) {
+            return false;
+        }
+
+        // Conta quantos empréstimos ativos existem para este ISBN
+        long emprestimosAtivos = emprestimoRepository.countByIsbnLivroAndStatusIn(
+                isbn, Arrays.asList("PENDENTE", "ATRASADO"));
+
+        // Verifica se há exemplares disponíveis
+        return livro.getExemplares() > emprestimosAtivos;
     }
 
     public void removerPorId(Long id){

@@ -2,6 +2,7 @@ package com.softwareLibrary.biblioteca.Repository;
 
 
 import com.softwareLibrary.biblioteca.Entidade.Emprestimo;
+import com.softwareLibrary.biblioteca.Enums.StatusEmprestimo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -33,4 +34,14 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
 
     // Histórico de empréstimos por livro
     List<Emprestimo> findByIsbnLivroOrderByDataRetiradaDesc(String isbnLivro);
+
+    long countByIsbnLivroAndStatusIn(String isbnLivro, List<String> status);
+
+    boolean existsByMatriculaAlunoAndStatusIn(String matriculaAluno, List<String> status);
+
+//    Optional<Emprestimo> findByIsbnLivroAndStatusIn(String isbnLivro, List<String> status);
+
+    //Optional<Emprestimo> findByStatusIn(String satus);
+
+    Emprestimo findByIsbnLivroAndMatriculaAluno(String isbn, String matricula);
 }

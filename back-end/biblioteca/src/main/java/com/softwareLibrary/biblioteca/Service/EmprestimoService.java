@@ -1,7 +1,9 @@
 package com.softwareLibrary.biblioteca.Service;
 
+import com.softwareLibrary.biblioteca.Entidade.Aluno;
 import com.softwareLibrary.biblioteca.Entidade.Emprestimo;
 import com.softwareLibrary.biblioteca.Entidade.Livro;
+import com.softwareLibrary.biblioteca.Enums.StatusEmprestimo;
 import com.softwareLibrary.biblioteca.Repository.EmprestimoRepository;
 import com.softwareLibrary.biblioteca.Repository.LivroRepository;
 import jakarta.transaction.Transactional;
@@ -17,25 +19,16 @@ import java.util.Optional;
 public class EmprestimoService {
 
     @Autowired
-    private final EmprestimoRepository emprestimoRepository;
+    private EmprestimoRepository emprestimoRepository;
 
     @Autowired
-    private final AlunoService alunoService;
+    private AlunoService alunoService;
 
     @Autowired
-    private final LivroService livroService;
+    private LivroService livroService;
 
     @Autowired
     private LivroRepository livroRepository;
-
-    @Autowired
-    public EmprestimoService(EmprestimoRepository emprestimoRepository,
-                             AlunoService alunoService,
-                             LivroService livroService) {
-        this.emprestimoRepository = emprestimoRepository;
-        this.alunoService = alunoService;
-        this.livroService = livroService;
-    }
 
     public Emprestimo realizarEmprestimo(String matriculaAluno, String isbnLivro) {
 
@@ -67,6 +60,7 @@ public class EmprestimoService {
         return emprestimoRepository.save(emprestimo);
     }
 
+    //Errado
     public Emprestimo devolverLivro(Long emprestimoId) {
         Optional<Emprestimo> emprestimoOpt = emprestimoRepository.findById(emprestimoId);
         if (emprestimoOpt.isPresent()) {
@@ -81,22 +75,12 @@ public class EmprestimoService {
         throw new RuntimeException("Empréstimo não encontrado");
     }
 
-    public Emprestimo devolverLivroPorIsbn(String isbnLivro) {
-        Optional<Emprestimo> emprestimoOpt = emprestimoRepository.findByIsbnLivroAndStatus(isbnLivro, "ATIVO");
-        if (emprestimoOpt.isPresent()) {
-            Emprestimo emprestimo = emprestimoOpt.get();
-            emprestimo.devolver();
-            return emprestimoRepository.save(emprestimo);
-        }
-        throw new RuntimeException("Não há empréstimo ativo para este livro");
-    }
-
     public List<Emprestimo> listarTodos() {
         return emprestimoRepository.findAll();
     }
 
     public List<Emprestimo> listarAtivos() {
-        return emprestimoRepository.findByStatus("ALUGADO");
+        return emprestimoRepository.findByStatus("PENDENTE");
     }
 
     public List<Emprestimo> listarAtrasados() {
@@ -116,7 +100,7 @@ public class EmprestimoService {
     }
 
     public Optional<Emprestimo> buscarEmprestimoAtivoPorAluno(String matriculaAluno) {
-        List<Emprestimo> ativos = emprestimoRepository.findByMatriculaAlunoAndStatus(matriculaAluno, "INDISPONÍVEL");
+        List<Emprestimo> ativos = emprestimoRepository.findByMatriculaAlunoAndStatus(matriculaAluno, "EMPRESTINO");
         return ativos.isEmpty() ? Optional.empty() : Optional.of(ativos.get(0));
     }
 

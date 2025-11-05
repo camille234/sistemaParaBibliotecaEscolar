@@ -45,15 +45,15 @@ public class EmprestimoController {
         }
     }
 
-    @PutMapping("/devolver-por-isbn/{isbn}")
-    public ResponseEntity<?> devolverLivroPorIsbn(@PathVariable String isbn) {
-        try {
-            Emprestimo emprestimo = emprestimoService.devolverLivroPorIsbn(isbn);
-            return ResponseEntity.ok(emprestimo);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Erro ao devolver livro: " + e.getMessage());
-        }
-    }
+//    @PutMapping("/devolver-por-isbn/{isbn}")
+//    public ResponseEntity<?> devolverLivroPorIsbn(@PathVariable String isbn) {
+//        try {
+//            Emprestimo emprestimo = emprestimoService.devolverLivroPorIsbn(isbn);
+//            return ResponseEntity.ok(emprestimo);
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body("Erro ao devolver livro: " + e.getMessage());
+//        }
+//    }
 
     @GetMapping
     public ResponseEntity<List<Emprestimo>> listarTodos() {
