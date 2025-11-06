@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 import { Search, BookOpen, Filter, X } from "lucide-react";
+import Header from "../../components/header";
 
 interface Book {
     id: number;
     titulo: string;
-    autor: string;
+    autoresFormatados: string;
     isbn: string;
-    category: string;
+    assuntos: string[];
     anoPublicacao: number;
-    available: boolean;
-    copies: number;
+    disponivel: boolean;
+    exemplares: number;
 }
 
 const categories = ["Todas", "Literatura Brasileira", "Ficção Científica", "Infantojuvenil", "Ficção"];
@@ -64,7 +65,9 @@ function HomePage() {
             let results = data;
 
             if (selectedCategory !== "Todas") {
-                results = results.filter((book: Book) => book.category === selectedCategory);
+                results = results.filter((book: Book) =>
+                    book.assuntos.includes(selectedCategory)
+                )
             }
 
             setFilteredBooks(results);
@@ -83,8 +86,11 @@ function HomePage() {
         fetchBooks();
     };
 
+
     return (
+
         <div className="busca-container">
+            <Header />
             {/* Main Content */}
             <main className="busca-main">
                 <div className="busca-content">
@@ -171,7 +177,7 @@ function HomePage() {
                                                 </div>
                                                 <div className="book-title-section">
                                                     <h3>{book.titulo}</h3>
-                                                    <p className="book-author">{book.autor}</p>
+                                                    <p className="book-author">{book.autoresFormatados}</p>
                                                 </div>
                                             </div>
 
@@ -181,10 +187,16 @@ function HomePage() {
                                                 <span>Ano: {book.anoPublicacao}</span>
                                             </div>
                                             <div className="book-badges">
-                                                <span className="badge badge-category">{book.category}</span>
-                                                {book.available ? (
+                                                <div className="categories-container">
+                                                    {book.assuntos.map((assunto, index) => (
+                                                        <span key={index} className="badge badge-category">
+                                                            {assunto}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                                {book.disponivel ? (
                                                     <span className="badge badge-available">
-                                                        Disponível ({book.copies} {book.copies === 1 ? "cópia" : "cópias"})
+                                                        Disponível
                                                     </span>
                                                 ) : (
                                                     <span className="badge badge-unavailable">Indisponível</span>

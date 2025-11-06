@@ -14,6 +14,7 @@ public class LivroFiltro {
     private String localPublicacao;
     private String numeroChamada;
     private String cdd;
+    private Boolean disponivel;
 
     // Getters e Setters
     public String getIsbn() { return isbn; }
@@ -45,4 +46,11 @@ public class LivroFiltro {
 
     public String getCdd() { return cdd; }
     public void setCdd(String cdd) { this.cdd = cdd; }
+
+    public Boolean getDisponivel() {
+        return disponivel;
+    }
+    public void setDisponivel(Boolean disponivel) {
+        this.disponivel = disponivel;
+    }
 }

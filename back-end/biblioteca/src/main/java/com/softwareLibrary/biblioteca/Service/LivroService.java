@@ -1,5 +1,6 @@
 package com.softwareLibrary.biblioteca.Service;
 
+import com.softwareLibrary.biblioteca.DTO.AssuntoDto;
 import com.softwareLibrary.biblioteca.DTO.LivroFiltro;
 import com.softwareLibrary.biblioteca.Entidade.Livro;
 import com.softwareLibrary.biblioteca.Repository.EmprestimoRepository;
@@ -93,5 +94,9 @@ public class LivroService {
         if (isbn == null) return null;
         return isbn.replace("-", ""); // Remove hífens para armazenamento
     }
+
+//    public List<AssuntoDto> listarAssuntos(){
+//        return livroRepository.findAllCategorias();
+//    }
 
 }

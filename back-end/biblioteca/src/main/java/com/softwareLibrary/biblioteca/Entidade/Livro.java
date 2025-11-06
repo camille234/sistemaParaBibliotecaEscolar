@@ -87,7 +87,11 @@ public class Livro {
         this.lingua = lingua;
         this.autores = autores;
         this.titulo = titulo;
-        this.disponivel = true;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        disponivel = true;
     }
 
     public void disponibilizarLivro(){
@@ -225,6 +229,10 @@ public class Livro {
 
     public void setCdd(String cdd) {
         this.cdd = cdd;
+    }
+
+    public Boolean getDisponivel(){
+        return disponivel;
     }
 
     // Métodos auxiliares

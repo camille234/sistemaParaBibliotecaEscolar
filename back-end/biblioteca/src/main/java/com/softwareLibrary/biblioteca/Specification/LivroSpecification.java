@@ -81,6 +81,15 @@ public class LivroSpecification {
                 ));
             }
 
+            // Filtro por disponivel
+            if (filtro.getDisponivel() != null) {
+                predicates.add(builder.like(
+                        builder.lower(root.get("disponivel")),
+                        "%" + filtro.getDisponivel() + "%"
+                ));
+            }
+
+
             return builder.and(predicates.toArray(new Predicate[0]));
         };
     }

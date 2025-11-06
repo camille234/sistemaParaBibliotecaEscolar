@@ -296,6 +296,11 @@
   color: #0066cc;
 }
 
+.categories-container{
+    display: flex;
+    gap: 0.5rem;
+}
+
 .book-title-section {
   flex: 1;
   min-width: 0;

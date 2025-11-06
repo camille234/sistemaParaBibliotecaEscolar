@@ -1,5 +1,6 @@
 package com.softwareLibrary.biblioteca.Controller;
 
+import com.softwareLibrary.biblioteca.DTO.AssuntoDto;
 import com.softwareLibrary.biblioteca.DTO.LivroFiltro;
 import com.softwareLibrary.biblioteca.Entidade.Livro;
 import com.softwareLibrary.biblioteca.Service.LivroService;
@@ -50,6 +51,12 @@ public class LivroController {
         List<Livro> livros = livroService.filtrar(filtro);
         return ResponseEntity.ok(livros);
     }
+
+//    @GetMapping("/categorias")
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<AssuntoDto> listaAssunto(){
+//        return livroService.listarAssuntos();
+//    }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
