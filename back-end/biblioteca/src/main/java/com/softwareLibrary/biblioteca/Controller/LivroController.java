@@ -52,11 +52,11 @@ public class LivroController {
         return ResponseEntity.ok(livros);
     }
 
-//    @GetMapping("/categorias")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<AssuntoDto> listaAssunto(){
-//        return livroService.listarAssuntos();
-//    }
+    @GetMapping("/categorias")
+    @ResponseStatus(HttpStatus.OK)
+    public List<AssuntoDto> listaAssunto(){
+        return livroService.listarAssuntos();
+    }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

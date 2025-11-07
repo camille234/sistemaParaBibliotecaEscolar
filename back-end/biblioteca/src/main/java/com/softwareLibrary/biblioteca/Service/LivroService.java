@@ -95,8 +95,8 @@ public class LivroService {
         return isbn.replace("-", ""); // Remove hífens para armazenamento
     }
 
-//    public List<AssuntoDto> listarAssuntos(){
-//        return livroRepository.findAllCategorias();
-//    }
+    public List<AssuntoDto> listarAssuntos(){
+        return livroRepository.findAllAssuntos();
+    }
 
 }

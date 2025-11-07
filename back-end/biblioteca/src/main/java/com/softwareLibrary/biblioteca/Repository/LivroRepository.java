@@ -21,9 +21,9 @@ public interface LivroRepository extends JpaRepository<Livro, Long>, JpaSpecific
 
     // Metodo para buscar por ISBN contendo (para buscas parciais)
     Optional<Livro> findByIsbnContaining(String isbn);
-//
-//    @Query("SELECT DISTINCT la.assunto FROM LivroAssunto la")
-//    List<AssuntoDto> findAllCategorias();
+
+    @Query(value = "SELECT DISTINCT assunto FROM tb_livro_assuntos", nativeQuery = true)
+    List<AssuntoDto> findAllAssuntos();
 
 }
 

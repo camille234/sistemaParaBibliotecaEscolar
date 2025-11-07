@@ -14,7 +14,12 @@ interface Book {
     exemplares: number;
 }
 
-const categories = ["Todas", "Literatura Brasileira", "Ficção Científica", "Infantojuvenil", "Ficção"];
+const categories = ["Titulo", "Isbn"];
+
+const searchFields: { label: string, param: string }[] = [
+    { label: "Título", param: "titulo" },
+    { label: "ISBN", param: "isbn" }   // Assumindo que seu backend aceita "isbn"
+];
 
 function HomePage() {
 
@@ -22,6 +27,7 @@ function HomePage() {
     const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("Todas");
+    const [selectedSearchField, setSelectedSearchField] = useState(searchFields[0].param); // Padrão: "titulo"
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -29,6 +35,9 @@ function HomePage() {
     useEffect(() => {
         fetchBooks();
     }, []);
+
+    // O parâmetro da URL é determinado pelo 'selectedSearchField'
+    const searchParam = selectedSearchField; // Ex: 'titulo', 'autor', ou 'isbn'
 
     const fetchBooks = async () => {
         try {
@@ -52,25 +61,23 @@ function HomePage() {
             setLoading(true);
             setError(null);
 
-            // Se não houver termo de busca, busca todos os livros novamente
+            // Se não houver termo de busca, busca todos os livros novamente (TUDO)
             if (!searchTerm.trim()) {
                 fetchBooks();
                 return;
             }
 
-            const response = await fetch(`http://localhost:8080/livro/filtrar?titulo=${encodeURIComponent(searchTerm)}`);
+            const searchParam = selectedSearchField; 
+            
+            const url = `http://localhost:8080/livro/filtrar?${searchParam}=${encodeURIComponent(searchTerm)}`;
+
+            const response = await fetch(url);
+            
             if (!response.ok) throw new Error("Erro ao buscar livros filtrados");
             const data = await response.json();
 
-            let results = data;
-
-            if (selectedCategory !== "Todas") {
-                results = results.filter((book: Book) =>
-                    book.assuntos.includes(selectedCategory)
-                )
-            }
-
-            setFilteredBooks(results);
+            // 💡 Remoção do filtro local. A lista retornada do backend já é o resultado final.
+            setFilteredBooks(data);
         } catch (err) {
             setError("Erro ao buscar livros filtrados.");
             console.error(err);
@@ -112,7 +119,7 @@ function HomePage() {
                         <div className="filter-content">
                             <div className="filter-grid">
                                 <div className="filter-group">
-                                    <label htmlFor="search">Buscar por título, autor ou ISBN</label>
+                                    <label htmlFor="search">Buscar por título ou ISBN</label>
                                     <input
                                         id="search"
                                         type="text"
@@ -127,8 +134,8 @@ function HomePage() {
                                     <label htmlFor="category">Categoria</label>
                                     <select
                                         id="category"
-                                        value={selectedCategory}
-                                        onChange={(e) => setSelectedCategory(e.target.value)}
+                                        value={selectedSearchField}
+                                        onChange={(e) => setSelectedSearchField(e.target.value)}
                                         className="filter-select"
                                     >
                                         {categories.map((cat) => (
