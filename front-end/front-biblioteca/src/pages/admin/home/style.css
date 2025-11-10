@@ -1,0 +1,101 @@
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+.admin-content {
+  padding: 40px 60px;
+}
+
+.admin-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.admin-subtitle {
+  color: #555;
+  margin-top: 4px;
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+}
+
+/* GRID PRINCIPAL */
+.admin-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px; /* espaço entre as duas linhas */
+}
+
+/* CADA LINHA DO GRID */
+.admin-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: flex-start;
+}
+
+.admin-card {
+  flex: 1 1 360px;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  padding: 24px;
+  transition: 0.2s ease;
+  background-color: #fff;
+  cursor: pointer;
+  min-width: 300px;
+}
+
+.admin-card:hover {
+  border-color: #2c1970;
+  box-shadow: 0 4px 10px rgba(44, 25, 112, 0.1);
+}
+
+.admin-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.admin-card-header img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(13%) sepia(96%) saturate(2631%)
+    hue-rotate(238deg) brightness(92%) contrast(101%);
+}
+
+.admin-card h2 {
+  font-size: 1.2rem;
+  color: #1a1a1a;
+}
+
+.admin-card p {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.admin-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-card-info strong {
+  font-size: 1.4rem;
+  color: #000;
+}
+
+.admin-card-info span {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.admin-card-footer {
+  font-size: 0.85rem;
+  color: #555;
+}

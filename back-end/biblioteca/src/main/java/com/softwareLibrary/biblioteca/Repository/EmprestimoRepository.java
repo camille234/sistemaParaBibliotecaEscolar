@@ -26,11 +26,13 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
     List<Emprestimo> findByStatus(String status);
 
     // Encontrar empréstimos atrasados
-    @Query("SELECT e FROM Emprestimo e WHERE e.status = 'ATIVO' AND e.dataDevolucaoPrevista < CURRENT_DATE")
+    @Query("SELECT e FROM Emprestimo e WHERE e.status = 'ATRASADO' AND e.dataDevolucaoPrevista < CURRENT_DATE")
     List<Emprestimo> findEmprestimosAtrasados();
 
     // Histórico de empréstimos por aluno
     List<Emprestimo> findByMatriculaAlunoOrderByDataRetiradaDesc(String matriculaAluno);
+
+    Optional<Emprestimo> findByMatriculaAluno(String matricula);
 
     // Histórico de empréstimos por livro
     List<Emprestimo> findByIsbnLivroOrderByDataRetiradaDesc(String isbnLivro);
@@ -39,9 +41,4 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
 
     boolean existsByMatriculaAlunoAndStatusIn(String matriculaAluno, List<String> status);
 
-//    Optional<Emprestimo> findByIsbnLivroAndStatusIn(String isbnLivro, List<String> status);
-
-    //Optional<Emprestimo> findByStatusIn(String satus);
-
-    Emprestimo findByIsbnLivroAndMatriculaAluno(String isbn, String matricula);
 }

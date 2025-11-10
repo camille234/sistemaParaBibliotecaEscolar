@@ -60,12 +60,11 @@ public class EmprestimoService {
         return emprestimoRepository.save(emprestimo);
     }
 
-    //Errado
-    public Emprestimo devolverLivro(Long emprestimoId) {
-        Optional<Emprestimo> emprestimoOpt = emprestimoRepository.findById(emprestimoId);
+    public Emprestimo devolverLivro(String matricula) {
+        Optional<Emprestimo> emprestimoOpt = emprestimoRepository.findByMatriculaAluno(matricula);
         if (emprestimoOpt.isPresent()) {
             Emprestimo emprestimo = emprestimoOpt.get();
-            if ("ATIVO".equals(emprestimo.getStatus())) {
+            if ("DEVOLVIDO".equals(emprestimo.getStatus())) {
                 emprestimo.devolver();
                 return emprestimoRepository.save(emprestimo);
             } else {
@@ -84,7 +83,7 @@ public class EmprestimoService {
     }
 
     public List<Emprestimo> listarAtrasados() {
-        return emprestimoRepository.findEmprestimosAtrasados();
+        return emprestimoRepository.findByStatus("ATRASADO");
     }
 
     public List<Emprestimo> historicoPorAluno(String matriculaAluno) {

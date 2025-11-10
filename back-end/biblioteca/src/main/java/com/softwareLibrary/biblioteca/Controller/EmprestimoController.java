@@ -35,25 +35,15 @@ public class EmprestimoController {
         }
     }
 
-    @PutMapping("/devolver/{id}")
-    public ResponseEntity<?> devolverLivro(@PathVariable Long id) {
+    @PutMapping("/devolver/{matricula}")
+    public ResponseEntity<?> devolverLivro(@PathVariable String matricula) {
         try {
-            Emprestimo emprestimo = emprestimoService.devolverLivro(id);
+            Emprestimo emprestimo = emprestimoService.devolverLivro(matricula);
             return ResponseEntity.ok(emprestimo);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Erro ao devolver livro: " + e.getMessage());
         }
     }
-
-//    @PutMapping("/devolver-por-isbn/{isbn}")
-//    public ResponseEntity<?> devolverLivroPorIsbn(@PathVariable String isbn) {
-//        try {
-//            Emprestimo emprestimo = emprestimoService.devolverLivroPorIsbn(isbn);
-//            return ResponseEntity.ok(emprestimo);
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body("Erro ao devolver livro: " + e.getMessage());
-//        }
-//    }
 
     @GetMapping
     public ResponseEntity<List<Emprestimo>> listarTodos() {
@@ -92,10 +82,4 @@ public class EmprestimoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/aluno/{matricula}/ativo")
-    public ResponseEntity<Emprestimo> buscarEmprestimoAtivo(@PathVariable String matricula) {
-        Optional<Emprestimo> emprestimo = emprestimoService.buscarEmprestimoAtivoPorAluno(matricula);
-        return emprestimo.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
 }
