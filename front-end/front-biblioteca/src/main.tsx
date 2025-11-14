@@ -9,6 +9,7 @@ import HomePage from './pages/home'
 import AdminLogin from './pages/admin/login'
 import AdminHome from './pages/admin/home'
 import ConsultaLivrosAdmin from './pages/admin/consulta'
+import EditarLivroAdmin from './pages/admin/atualizar'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/admin' element={<AdminLogin />}/>
         <Route path='/home/admin' element={<AdminHome />}/>
         <Route path='/consulta/admin' element={<ConsultaLivrosAdmin />}/>
+        <Route path='/editar/admin/:id' element={<EditarLivroAdmin />} />
       </Routes>
     </Router>
   </StrictMode>,

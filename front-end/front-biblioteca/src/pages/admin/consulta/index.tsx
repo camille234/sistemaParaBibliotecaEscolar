@@ -5,6 +5,8 @@ import editIcon from "../../../assets/edicao.png";
 import Header from "../../../components/admin/header";
 import "./style.css";
 
+import EditarLivroAdmin from "../atualizar";
+
 interface Livro {
   id: number;
   titulo: string;
@@ -82,7 +84,7 @@ function ConsultaLivrosAdmin() {
 
   // Redireciona para página de edição
   const handleEdit = (livroId: number) => {
-    navigate(`/editarLivro/admin/${livroId}`);
+    navigate(`/editar/admin/${livroId}`);
   };
 
   return (
@@ -165,8 +167,7 @@ function ConsultaLivrosAdmin() {
                       <td className="action-cell">
                         <button
                           className="edit-button"
-                          onClick={() => handleEdit(livro.id)}
-                        >
+                          onClick={() => handleEdit(livro.id)}>
                           <img src={editIcon} alt="Editar" />
                         </button>
                       </td>
