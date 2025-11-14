@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import logo from "../../assets/cedup-logo.png";
+import logo from "../../../assets/cedup-logo.png";
 
 const Header: React.FC = () => {
   return (
@@ -8,11 +8,11 @@ const Header: React.FC = () => {
       {/* Header */}
       <header className="busca-header">
         <div className="header-content">
-          <a href="/home" className="logo-link">
+          <a href="/home/admin" className="logo-link">
             <img src={logo} alt="CEDUP Hermann Hering" width={120} height={60} />
           </a>
           <nav className="header-nav">
-            <a href="/home">
+            <a href="/home/admin">
               <button className="nav-button">Início</button>
             </a>
           </nav>

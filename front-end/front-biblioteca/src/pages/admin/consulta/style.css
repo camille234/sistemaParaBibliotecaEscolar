@@ -1,0 +1,233 @@
+/* --- Estilos herdados da AdminHome (ajustados para a página) --- */
+
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f7f7f7; /* Fundo mais claro para a página */
+    font-family: "Poppins", sans-serif;
+}
+
+.admin-content {
+    padding: 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.admin-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.admin-subtitle {
+    color: #555;
+    margin-top: 4px;
+    margin-bottom: 40px;
+    font-size: 0.95rem;
+}
+
+/* --- CARD PRINCIPAL DE CONSULTA --- */
+
+.consulta-card-container {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+}
+
+.consulta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.consulta-header h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.btn-voltar {
+    background-color: #fff;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-voltar:hover {
+    background-color: #f0f0f0;
+    border-color: #aaa;
+}
+
+/* --- BARRA DE BUSCA --- */
+
+.search-bar-container {
+    display: flex;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.filter-select {
+  border: none;
+  border-left: 1px solid #ccc;
+  border-radius: 0;
+  font-size: 1rem;
+  color: #444;
+  background-color: #f7f7f7;
+  height: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filter-select:hover {
+  background-color: #efefef;
+}
+
+.filter-select:focus {
+  background-color: #fff;
+}
+
+.search-button {
+    background-color: #dc3545; /* Cor vermelha do botão da imagem */
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button:hover {
+    background-color: #c82333;
+}
+
+.search-button img {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- TABELA DE LIVROS --- */
+
+.livros-table-container {
+    overflow-x: auto; /* Garante scroll em telas pequenas */
+}
+
+.livros-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    min-width: 600px;
+}
+
+.livros-table th {
+    text-align: left;
+    padding: 12px 15px;
+    background-color: #f7f7f7;
+    color: #333;
+    font-weight: 600;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.livros-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #444;
+    vertical-align: middle;
+}
+
+.livros-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.livros-table tbody tr:hover {
+    background-color: #fafafa;
+}
+
+/* --- TAGS DE STATUS --- */
+
+.status-tag {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.status-disponivel {
+    background-color: #e6ffed; /* Verde claro */
+    color: #1a7f37; /* Verde escuro */
+    border: 1px solid #b6e4c7;
+}
+
+.status-indisponivel {
+    background-color: #fff0f0; /* Vermelho claro/salmão (como na imagem) */
+    color: #c95151; /* Vermelho/Marrom */
+    border: 1px solid #f7d4d4;
+}
+
+/* --- BOTÃO DE AÇÃO (EDITAR) --- */
+
+.action-cell {
+    width: 80px; /* Garante que a coluna de ação não seja muito larga */
+    text-align: center;
+}
+
+.edit-button {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.edit-button:hover {
+    background-color: #f0f0f0;
+    border-color: #999;
+}
+
+.edit-button img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    /* Filtrar o ícone de edição (edicao.png) para uma cor escura, se necessário */
+    filter: invert(10%) sepia(1%) saturate(320%) hue-rotate(334deg) brightness(98%) contrast(90%);
+}
+
+/* --- MENSAGENS DE FEEDBACK --- */
+
+.loading-message, .no-results {
+    text-align: center;
+    padding: 40px 0;
+    color: #777;
+    font-size: 1.1rem;
+}

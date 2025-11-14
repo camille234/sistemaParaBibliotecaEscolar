@@ -18,7 +18,7 @@ const categories = ["Titulo", "Isbn"];
 
 const searchFields: { label: string, param: string }[] = [
     { label: "Título", param: "titulo" },
-    { label: "ISBN", param: "isbn" }   // Assumindo que seu backend aceita "isbn"
+    { label: "ISBN", param: "isbn" } 
 ];
 
 function HomePage() {
@@ -104,7 +104,7 @@ function HomePage() {
                     {/* Page Header */}
                     <div className="busca-page-header">
                         <h1>Buscar Livros</h1>
-                        <p>Pesquise por título, autor, ISBN ou categoria no acervo da biblioteca</p>
+                        <p>Pesquise por título ou ISBN no acervo da biblioteca</p>
                     </div>
 
                     {/* Search Filters */}

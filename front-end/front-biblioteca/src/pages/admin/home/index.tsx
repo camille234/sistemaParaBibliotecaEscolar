@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Import do hook de navegação
+import { useNavigate } from "react-router-dom";
 import searchIcon from "../../../assets/lupa.png";
 import plusIcon from "../../../assets/mais.png";
 import returnIcon from "../../../assets/comente.png";
@@ -8,7 +8,7 @@ import Header from "../../../components/header";
 import "./style.css";
 
 function AdminHome() {
-    const navigate = useNavigate(); // ✅ inicializa a navegação
+    const navigate = useNavigate();
 
     // Estados para armazenar as contagens
     const [totalLivros, setTotalLivros] = useState<number>(0);
@@ -61,7 +61,7 @@ function AdminHome() {
                         {/* CONSULTAR LIVROS */}
                         <div
                             className="admin-card"
-                            onClick={() => navigate("/consultarLivros/admin")} // ✅ Redireciona
+                            onClick={() => navigate("/consulta/admin")}
                         >
                             <div className="admin-card-header">
                                 <img src={searchIcon} alt="Consultar Livros" />
@@ -79,7 +79,7 @@ function AdminHome() {
                         {/* CADASTRAR LIVROS */}
                         <div
                             className="admin-card"
-                            onClick={() => navigate("/cadastrarLivro/admin")} // ✅ Redireciona
+                            onClick={() => navigate("/cadastrarLivro/admin")}
                         >
                             <div className="admin-card-header">
                                 <img src={plusIcon} alt="Cadastrar Livros" />
@@ -94,7 +94,7 @@ function AdminHome() {
                         {/* REGISTRAR EMPRÉSTIMO */}
                         <div
                             className="admin-card"
-                            onClick={() => navigate("/registrarEmprestimo/admin")} // ✅ Redireciona
+                            onClick={() => navigate("/registrarEmprestimo/admin")}
                         >
                             <div className="admin-card-header">
                                 <img src={returnIcon} alt="Registrar Empréstimo" />
@@ -112,7 +112,7 @@ function AdminHome() {
                         {/* REGISTRAR DEVOLUÇÃO */}
                         <div
                             className="admin-card"
-                            onClick={() => navigate("/registrarDevolucao/admin")} // ✅ Redireciona
+                            onClick={() => navigate("/registrarDevolucao/admin")}
                         >
                             <div className="admin-card-header">
                                 <img src={checkIcon} alt="Registrar Devolução" />
