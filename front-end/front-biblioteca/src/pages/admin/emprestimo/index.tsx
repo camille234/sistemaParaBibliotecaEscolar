@@ -89,7 +89,7 @@ function RegistrarEmprestimoAdmin() {
       setIsbn("");
       setMatricula("");
 
-      setTimeout(() => navigate("home/admin"), 1400);
+      setTimeout(() => navigate("/home/admin"), 1400);
     } catch (error) {
       const text = error instanceof Error ? error.message : "Erro desconhecido.";
       setMessage({ type: "error", text });

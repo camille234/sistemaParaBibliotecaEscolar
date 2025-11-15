@@ -4,7 +4,7 @@ import searchIcon from "../../../assets/lupa.png";
 import plusIcon from "../../../assets/mais.png";
 import returnIcon from "../../../assets/comente.png";
 import checkIcon from "../../../assets/setas.png";
-import Header from "../../../components/header";
+import Header from "../../../components/admin/header";
 import "./style.css";
 
 function AdminHome() {

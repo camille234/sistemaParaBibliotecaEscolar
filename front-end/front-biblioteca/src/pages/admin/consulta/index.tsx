@@ -98,6 +98,7 @@ function ConsultaLivrosAdmin() {
         <div className="consulta-card-container">
           <div className="consulta-header">
             <h2>Consultar e Editar livros</h2>
+            <button className="btn-voltar" onClick={() => navigate('/home/admin')}>Voltar</button>
           </div>
 
           {/* Barra de Busca */}
