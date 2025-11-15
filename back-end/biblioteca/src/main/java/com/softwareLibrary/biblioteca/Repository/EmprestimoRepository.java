@@ -25,9 +25,8 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
     // Encontrar todos os empréstimos ativos
     List<Emprestimo> findByStatus(String status);
 
-    // Encontrar empréstimos atrasados
-    @Query("SELECT e FROM Emprestimo e WHERE e.status = 'ATRASADO' AND e.dataDevolucaoPrevista < CURRENT_DATE")
-    List<Emprestimo> findEmprestimosAtrasados();
+    List<Emprestimo> findByStatusIn(List<String> status);
+
 
     // Histórico de empréstimos por aluno
     List<Emprestimo> findByMatriculaAlunoOrderByDataRetiradaDesc(String matriculaAluno);

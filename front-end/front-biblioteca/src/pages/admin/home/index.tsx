@@ -83,7 +83,7 @@ function AdminHome() {
                         >
                             <div className="admin-card-header">
                                 <img src={plusIcon} alt="Cadastrar Livros" />
-                                <h2>Cadastrar Livros</h2>
+                                <h2>Cadastrar Livro</h2>
                             </div>
                             <p>Adicionar novo livro ao acervo</p>
                         </div>
@@ -94,7 +94,7 @@ function AdminHome() {
                         {/* REGISTRAR EMPRÉSTIMO */}
                         <div
                             className="admin-card"
-                            onClick={() => navigate("/registrarEmprestimo/admin")}
+                            onClick={() => navigate("/emprestimo/admin")}
                         >
                             <div className="admin-card-header">
                                 <img src={returnIcon} alt="Registrar Empréstimo" />
@@ -112,7 +112,7 @@ function AdminHome() {
                         {/* REGISTRAR DEVOLUÇÃO */}
                         <div
                             className="admin-card"
-                            onClick={() => navigate("/registrarDevolucao/admin")}
+                            onClick={() => navigate("/devolucaoLivro/admin")}
                         >
                             <div className="admin-card-header">
                                 <img src={checkIcon} alt="Registrar Devolução" />

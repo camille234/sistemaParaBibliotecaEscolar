@@ -6,6 +6,7 @@ import com.softwareLibrary.biblioteca.Entidade.Livro;
 import com.softwareLibrary.biblioteca.Repository.EmprestimoRepository;
 import com.softwareLibrary.biblioteca.Repository.LivroRepository;
 import com.softwareLibrary.biblioteca.Specification.LivroSpecification;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -98,5 +99,34 @@ public class LivroService {
     public List<AssuntoDto> listarAssuntos(){
         return livroRepository.findAllAssuntos();
     }
+
+    @Transactional
+    public Livro atualizar(Long id, Livro novo) {
+        Livro livro = livroRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+
+        livro.setTitulo(novo.getTitulo());
+        livro.setIsbn(novo.getIsbn());
+        livro.setAnoPublicacao(novo.getAnoPublicacao());
+        livro.setEdicao(novo.getEdicao());
+        livro.setCdd(novo.getCdd());
+        livro.setCutter(novo.getCutter());
+        livro.setDescricaoFisica(novo.getDescricaoFisica());
+        livro.setLingua(novo.getLingua());
+        livro.setEditora(novo.getEditora());
+        livro.setExemplares(novo.getExemplares());
+        livro.setNumeroChamada(novo.getNumeroChamada());
+        livro.setLocalPublicacao(novo.getLocalPublicacao());
+        livro.setTituloSerie(novo.getTituloSerie());
+
+        livro.getAutores().clear();
+        livro.getAutores().addAll(novo.getAutores());
+
+        livro.getAssuntos().clear();
+        livro.getAssuntos().addAll(novo.getAssuntos());
+
+        return livroRepository.save(livro);
+    }
+
 
 }

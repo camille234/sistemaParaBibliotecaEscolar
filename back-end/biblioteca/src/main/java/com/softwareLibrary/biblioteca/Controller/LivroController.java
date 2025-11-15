@@ -58,16 +58,16 @@ public class LivroController {
         return livroService.listarAssuntos();
     }
 
-    @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void atualizacaoLivro(@PathVariable("id") Long id, @RequestBody Livro livro){
-        livroService.buscarPorId(id)
-                .map(livroBase -> {
-                    modelMapper.map(livro, livroBase);
-                    livroService.salvar(livroBase);
-                    return Void.TYPE;
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "O livro não foi encontrado!"));
-    }
+//    @PutMapping("/{id}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public void atualizacaoLivro(@PathVariable("id") Long id, @RequestBody Livro livro){
+//        livroService.buscarPorId(id)
+//                .map(livroBase -> {
+//                    modelMapper.map(livro, livroBase);
+//                    livroService.salvar(livroBase);
+//                    return Void.TYPE;
+//                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "O livro não foi encontrado!"));
+//    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -76,6 +76,11 @@ public class LivroController {
             livroService.removerPorId(livro.getId());
             return Void.TYPE;
         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "O livro não foi encontrado!"));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Livro novo) {
+        return ResponseEntity.ok(livroService.atualizar(id, novo));
     }
 
 }

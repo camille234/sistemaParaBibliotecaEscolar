@@ -64,7 +64,7 @@ public class EmprestimoService {
         Optional<Emprestimo> emprestimoOpt = emprestimoRepository.findByMatriculaAluno(matricula);
         if (emprestimoOpt.isPresent()) {
             Emprestimo emprestimo = emprestimoOpt.get();
-            if ("DEVOLVIDO".equals(emprestimo.getStatus())) {
+            if (!"DEVOLVIDO".equals(emprestimo.getStatus())) {
                 emprestimo.devolver();
                 return emprestimoRepository.save(emprestimo);
             } else {
@@ -97,6 +97,13 @@ public class EmprestimoService {
     public Optional<Emprestimo> buscarPorId(Long id) {
         return emprestimoRepository.findById(id);
     }
+
+    public List<Emprestimo> listarPendentesEAtrasados() {
+        return emprestimoRepository.findByStatusIn(
+                List.of("PENDENTE", "ATRASADO")
+        );
+    }
+
 
     public Optional<Emprestimo> buscarEmprestimoAtivoPorAluno(String matriculaAluno) {
         List<Emprestimo> ativos = emprestimoRepository.findByMatriculaAlunoAndStatus(matriculaAluno, "EMPRESTINO");

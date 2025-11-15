@@ -1,0 +1,207 @@
+/* --- Estilos herdados da AdminHome/Consulta (ajustados para a página) --- */
+
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f7f7f7;
+    font-family: "Poppins", sans-serif;
+}
+
+.admin-content {
+    padding: 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.admin-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.admin-subtitle {
+    color: #555;
+    margin-top: 4px;
+    margin-bottom: 40px;
+    font-size: 0.95rem;
+}
+
+/* ============================================
+    CARD PRINCIPAL DE EMPRÉSTIMO
+    ============================================ */
+
+.card-emprestimo {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    max-width: 600px; /* Mais estreito para focar no formulário */
+    margin: 0 auto;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 18px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.card-header h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+/* Botão de voltar reutilizado da outra tela */
+.btn-voltar {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    padding: 9px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #4b5563;
+    transition: all 0.2s;
+}
+
+.btn-voltar:hover {
+    background: #f3f4f6;
+}
+
+/* ============================================
+    FORMULÁRIO E CAMPOS
+    ============================================ */
+
+.form-emprestimo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #374151;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.2s;
+    background: #ffffff;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #4338ca;
+    box-shadow: 0 0 0 2px rgba(67, 56, 202, 0.25);
+}
+
+.form-group input:disabled,
+.form-group select:disabled {
+    background-color: #f7f7f7;
+    cursor: not-allowed;
+    color: #999;
+}
+
+.form-group select {
+    /* Adiciona a seta personalizada, baseada nos seus estilos de edição */
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+}
+
+.hint-text {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 5px;
+}
+
+/* ============================================
+    BOTÃO DE AÇÃO PRINCIPAL
+    ============================================ */
+
+.form-actions {
+    padding-top: 25px;
+    margin-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* O botão principal (Realizar Empréstimo) é mais escuro, conforme a imagem */
+.btn-primary {
+    background: #4338ca; /* Cor primária do seu outro componente */
+    color: white;
+    border: none;
+    padding: 14px 26px; /* Mais alto */
+    border-radius: 8px;
+    font-size: 1.1rem; /* Um pouco maior */
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+    width: 100%;
+    
+    /* Sobrepõe a cor do seu outro componente para ser mais escuro, como na imagem */
+    background: #312e81; 
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #1e1b4b; /* Tom mais escuro no hover */
+}
+
+.btn-primary:disabled {
+    background: #a5a5a5;
+    cursor: not-allowed;
+}
+
+/* ============================================
+    MENSAGENS DE FEEDBACK (reutilizadas)
+    ============================================ */
+.message {
+    padding: 12px 18px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.message.success {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.message.error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+/* ============================================
+    RESPONSIVIDADE
+    ============================================ */
+
+@media (max-width: 650px) {
+    .admin-content {
+        padding: 30px 20px;
+    }
+    .card-emprestimo {
+        padding: 20px;
+    }
+}

@@ -5,8 +5,6 @@ import editIcon from "../../../assets/edicao.png";
 import Header from "../../../components/admin/header";
 import "./style.css";
 
-import EditarLivroAdmin from "../atualizar";
-
 interface Livro {
   id: number;
   titulo: string;
@@ -84,7 +82,7 @@ function ConsultaLivrosAdmin() {
 
   // Redireciona para página de edição
   const handleEdit = (livroId: number) => {
-    navigate(`/editar/admin/${livroId}`);
+    navigate(`/editarLivro/admin/${livroId}`);
   };
 
   return (

@@ -1,0 +1,113 @@
+/* CONTAINER GERAL DA PÁGINA */
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f6fa;
+}
+
+/* CARD PRINCIPAL */
+.card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 1050px;
+  border-radius: 16px;
+  padding: 25px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* HEADER DO CARD */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.card-header-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #333333;
+}
+
+/* BOTÃO VOLTAR */
+.btn-voltar {
+  background: #ccc;
+  color: #333333;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-voltar:hover {
+  background: #b5b5b5;
+}
+
+/* MENSAGENS */
+.message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.message.success {
+  background: #d4f8d4;
+  color: #157d23;
+  border: 1px solid #9ee8a1;
+}
+
+.message.error {
+  background: #ffd2d2;
+  color: #a70000;
+  border: 1px solid #ff9c9c;
+}
+
+/* TABELA */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.table th {
+  text-align: left;
+  padding: 12px;
+  background: #ececec;
+  color: #333;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.table td {
+  padding: 12px;
+  font-size: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table tr:hover td {
+  background: #f0f0f0;
+}
+
+/* BOTAO DE AÇÃO */
+.btn-primary {
+  background: #4c6ef5;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.btn-primary:hover {
+  background: #3b5bdb;
+}

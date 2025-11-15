@@ -1,7 +1,9 @@
 package com.softwareLibrary.biblioteca.Controller;
 
 import com.softwareLibrary.biblioteca.Entidade.Emprestimo;
+import com.softwareLibrary.biblioteca.Entidade.Livro;
 import com.softwareLibrary.biblioteca.Service.EmprestimoService;
+import com.softwareLibrary.biblioteca.Service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -81,5 +83,11 @@ public class EmprestimoController {
         return emprestimo.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/pendentes-atrasados")
+    public ResponseEntity<List<Emprestimo>> listarPendentesEAtrasados() {
+        return ResponseEntity.ok(emprestimoService.listarPendentesEAtrasados());
+    }
+
 
 }
